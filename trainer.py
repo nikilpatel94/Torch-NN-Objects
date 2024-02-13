@@ -40,7 +40,7 @@ class Torch_Trainer(nn.Module):
         logits, curr_train_loss = self.model(self.X_train,self.y_train)
       else:
         logits, curr_train_loss = self.model(self.X_train,self.hidden,self.y_train)
-      self.loss.append(curr_train_loss.detach())
+      self.loss.append(curr_train_loss)
       self.optimizer.zero_grad()
       curr_train_loss.backward()
       self.optimizer.step()
