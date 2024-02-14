@@ -22,36 +22,47 @@ class Torch_Trainer(nn.Module):
     self.loss_step = kwargs['loss_step']
     self.verbose = kwargs['verbose']
     self.hidden = kwargs['hidden_state']
-    self.loss = []
-    self.valid_loss = []
+    #self.loss = []
+    #self.valid_loss = []
+    # self.loss = torch.empty((self.epochs,))
+    # self.valid_loss = torch.empty((self.epochs,))
+    self.loss = torch.zeros((self.epochs,))
+    self.valid_loss = torch.zeros((self.epochs,))
 
   def visualize_training(self):
     fig,axs = plt.subplots(1,1)
-    axs.plot(range(self.epochs),self.loss, label='Training Loss')
-    axs.plot(range(self.epochs),self.valid_loss, label='Validation Loss')
+    axs.plot(range(self.epochs),self.loss.detach().cpu().numpy(), label='Training Loss')
+    if self.valid_loss is None:
+      1==1
+    else:
+      axs.plot(range(self.epochs),self.valid_loss.detach().cpu().numpy(), label='Validation Loss')
     plt.show()
 
   def forward(self):
     print('Starting Training...\n')
     for epoch in tqdm(range(self.epochs)):
-      #Train
+      
+      #Training
       self.model.train()
       if(self.hidden is None):
         logits, curr_train_loss = self.model(self.X_train,self.y_train)
       else:
         logits, curr_train_loss = self.model(self.X_train,self.hidden,self.y_train)
-      self.loss.append(curr_train_loss)
+      #self.loss.append(curr_train_loss)
+      self.loss[epoch] = curr_train_loss
       self.optimizer.zero_grad()
       curr_train_loss.backward()
       self.optimizer.step()
+      
       #Eval
       self.model.eval()
-      curr_valid_loss = 0.
+      curr_valid_loss = torch.empty((self.epochs,))
       if(self.hidden is None):
         _, curr_valid_loss = self.model(self.X_valid,self.y_valid)
       else:
         _, curr_train_loss = self.model(self.X_train,self.hidden,self.y_train)
-      self.valid_loss.append(curr_valid_loss)
+      #self.valid_loss.append(curr_valid_loss)
+      self.valid_loss[epoch] = curr_train_loss
       if(self.verbose):
         if(epoch % self.loss_step == 0 ):
           print(f"\nStep:{epoch}| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
