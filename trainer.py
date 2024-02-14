@@ -22,10 +22,6 @@ class Torch_Trainer(nn.Module):
     self.loss_step = kwargs['loss_step']
     self.verbose = kwargs['verbose']
     self.hidden = kwargs['hidden_state']
-    #self.loss = []
-    #self.valid_loss = []
-    # self.loss = torch.empty((self.epochs,))
-    # self.valid_loss = torch.empty((self.epochs,))
     self.loss = torch.zeros((self.epochs,))
     self.valid_loss = torch.zeros((self.epochs,))
 
@@ -48,8 +44,7 @@ class Torch_Trainer(nn.Module):
         logits, curr_train_loss = self.model(self.X_train,self.y_train)
       else:
         logits, curr_train_loss = self.model(self.X_train,self.hidden,self.y_train)
-      #self.loss.append(curr_train_loss)
-      self.loss[epoch] = curr_train_loss
+      self.loss[epoch] = curr_train_loss.item()
       self.optimizer.zero_grad()
       curr_train_loss.backward()
       self.optimizer.step()
@@ -60,9 +55,8 @@ class Torch_Trainer(nn.Module):
       if(self.hidden is None):
         _, curr_valid_loss = self.model(self.X_valid,self.y_valid)
       else:
-        _, curr_train_loss = self.model(self.X_train,self.hidden,self.y_train)
-      #self.valid_loss.append(curr_valid_loss)
-      self.valid_loss[epoch] = curr_train_loss
+        _, curr_valid_loss = self.model(self.X_train,self.hidden,self.y_train)
+      self.valid_loss[epoch] = curr_valid_loss.item()
       if(self.verbose):
         if(epoch % self.loss_step == 0 ):
           print(f"\nStep:{epoch}| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
