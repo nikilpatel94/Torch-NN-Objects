@@ -22,6 +22,7 @@ class Torch_Trainer(nn.Module):
     self.loss_step = kwargs['loss_step']
     self.verbose = kwargs['verbose']
     self.hidden = kwargs['hidden_state']
+    self.is_visualize = kwargs['is_visualize']
     self.loss = torch.zeros((self.epochs,))
     self.valid_loss = torch.zeros((self.epochs,))
 
@@ -62,6 +63,8 @@ class Torch_Trainer(nn.Module):
           print(f"\nStep:{epoch}| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
     print('\nTraining Finished...')
     print(f"Final Loss| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
-    self.visualize_training()
+    
+    if (self.is_visualize):
+      self.visualize_training() 
     if(self.save_model):
       torch.save(self.model.state_dict(), self.model_path)
