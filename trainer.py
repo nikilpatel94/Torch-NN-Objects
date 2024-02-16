@@ -61,8 +61,9 @@ class Torch_Trainer(nn.Module):
       if(self.verbose):
         if(epoch % self.loss_step == 0 ):
           print(f"\nStep:{epoch}| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
-    print('\nTraining Finished...')
-    print(f"Final Loss| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
+    if(self.verbose):
+      print('\nTraining Finished...')
+      print(f"Final Loss| Training Loss:{curr_train_loss}| Validation_loss:{curr_valid_loss}")
     
     if (self.is_visualize):
       self.visualize_training() 
