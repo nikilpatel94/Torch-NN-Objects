@@ -25,6 +25,6 @@ To use this function you need to take care of following things:
 
 
 ```bash
-  npm run deploy
+
 ```
 
