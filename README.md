@@ -23,12 +23,12 @@ The repository contains following helper function objects:
     care of batching sequetial data. 
 
  
-
-## Usage
+## Usage/Examples
 
 To use this any files from this repository, you need to import a raw file via python requests and write it into your current folder. 
 
 For example to use helper_functions.py use follwoing python code to use and import this.
+
 Credit: https://www.learnpytorch.io/02_pytorch_classification/#4-make-predictions-and-evaluate-the-model
 
 ```python
@@ -44,6 +44,4 @@ else:
     f.write(response.content)
     
 from helper_functions import simple_batch_maker
-
 ```
-
