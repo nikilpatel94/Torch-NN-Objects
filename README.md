@@ -24,9 +24,21 @@ The repository contains following helper function objects:
 ## Usage
 
 To use this function you need to take care of following things:
+1 helper_functions.py
 
+```python
+import requests
+from pathlib import Path
 
-```bash
-  npm run deploy
+if Path('helper_functions.py').is_file():
+  print("helper_functions.py already exists, skipping download")
+else:
+  print('Downloading helper_functions.py file...')
+  response = requests.get('https://raw.githubusercontent.com/nikilpatel94/Torch-NN-Objects/main/helper_functions.py')
+  with open('helper_functions.py','wb') as f:
+    f.write(response.content)
+    
+from helper_functions import simple_batch_maker
+
 ```
 
