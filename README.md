@@ -27,7 +27,7 @@ To use this any files from this repository, you need to import a raw file via py
 
 For example to use helper_functions.py use follwoing python code to use and import this.
 
-[Credit]https://www.learnpytorch.io/02_pytorch_classification/#4-make-predictions-and-evaluate-the-model
+[Credit](https://www.learnpytorch.io/02_pytorch_classification/#4-make-predictions-and-evaluate-the-model)
 
 ```python
 import requests
