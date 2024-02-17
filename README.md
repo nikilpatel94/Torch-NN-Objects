@@ -18,6 +18,9 @@ The repository contains following helper function objects:
     This python script can be used for training the Neural Networks. It accepts a fixed numbers of parameters to support the end to end training with basic visualization.
     2. helper_functions.py
     This python script contains several helper functions that helps in common Pytorch tensor related tasks such as simple batch making, basic visulizations etc
+      2.1 simple_batch_maker
+      This function takes several args such as batch size, sequence lenght,start index( all mendatory) and data as python lists and returns batch of these data as torch tensors. This is useful in 
+      care of batching sequetial data. 
 
  
 
