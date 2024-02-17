@@ -6,7 +6,7 @@
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+[Documentation](https://github.com/nikilpatel94/Torch-NN-Objects?tab=readme-ov-file#documentation)
 
 This repository contains objects that abstracts various tasks while working with your Pytorch based Neural Networks. The goal is to avoid writing commonly used functions each time. 
 
@@ -23,8 +23,9 @@ The repository contains following helper function objects:
 
 ## Usage
 
-To use this function you need to take care of following things:
-1 helper_functions.py
+To use this any files from this repository, you need to import a raw file via python requests and write it into your current folder. 
+
+For example to use helper_functions.py use follwoing python code to use and import this.
 
 ```python
 import requests
