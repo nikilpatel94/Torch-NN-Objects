@@ -5,8 +5,6 @@
 
 ## Documentation
 
-[Documentation](https://github.com/nikilpatel94/Torch-NN-Objects?tab=readme-ov-file#documentation)
-
 This repository contains objects that abstracts various tasks while working with your Pytorch based Neural Networks. The goal is to avoid writing commonly used functions each time. 
 
 This is Work in progress repository and will keep on updating frequently. 
@@ -29,7 +27,7 @@ To use this any files from this repository, you need to import a raw file via py
 
 For example to use helper_functions.py use follwoing python code to use and import this.
 
-Credit: https://www.learnpytorch.io/02_pytorch_classification/#4-make-predictions-and-evaluate-the-model
+[Credit]https://www.learnpytorch.io/02_pytorch_classification/#4-make-predictions-and-evaluate-the-model
 
 ```python
 import requests
