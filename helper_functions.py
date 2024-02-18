@@ -1,11 +1,11 @@
 import torch
 
-def simple_batch_maker(batch_size:int,seq_len:int,index:int,data:list,torch_tansforms=None):
+def simple_batch_maker(batch_size:int,seq_len:int,start_index:int,data:list,torch_tansforms=None):
   assert len(data ) >= seq_len *batch_size
   batch = torch.empty((batch_size,seq_len),dtype = torch.float)
   for i in range(batch_size):
-    batch[i] = torch.tensor( data[index:index+seq_len],dtype = torch.float ).unsqueeze(dim=0)
-    index = index+1
+    batch[i] = torch.tensor( data[start_index:start_index+seq_len],dtype = torch.float ).unsqueeze(dim=0)
+    start_index = start_index+1
   return batch
 
 def train_validation_test_splitter(data:list,train_test_split:float,valid_split=None,verbose=False):
