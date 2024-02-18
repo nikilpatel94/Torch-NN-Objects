@@ -5,7 +5,7 @@ def simple_batch_maker(batch_size:int,seq_len:int,index:int,data:list,torch_tans
   batch = torch.empty((batch_size,seq_len),dtype = torch.float)
   for i in range(batch_size):
     batch[i] = torch.tensor( data[index:index+seq_len],dtype = torch.float ).unsqueeze(dim=0)
-    index = index+seq_len
+    index = index+1
   return batch
 
 def train_validation_test_splitter(data:list,train_test_split:float,valid_split=None,verbose=False):
