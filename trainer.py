@@ -37,7 +37,7 @@ class Torch_Trainer(nn.Module):
       if(hidden is None):
         logits, curr_train_loss = self.model(X_train,y_train)
       else:
-        logits, curr_train_loss = self.model(X_train,hidden,y_train)
+        logits,hidden, curr_train_loss = self.model(X_train,hidden,y_train)
       self.loss[epoch] = curr_train_loss.item()
       self.optimizer.zero_grad()
       curr_train_loss.backward()
@@ -49,7 +49,7 @@ class Torch_Trainer(nn.Module):
       if(hidden is None):
         _, curr_valid_loss = self.model(X_validation,y_validation)
       else:
-        _, curr_valid_loss = self.model(X_validation,hidden,y_validation)
+        _, _,curr_valid_loss = self.model(X_validation,hidden,y_validation)
       self.valid_loss[epoch] = curr_valid_loss.item()
       if(self.verbose):
         if(epoch % self.loss_step == 0 ):
